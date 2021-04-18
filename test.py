@@ -7,9 +7,9 @@ from gym_match3.envs import Match3Env
 from gym_match3.envs.levels import LEVELS, Match3Levels, Level
 import argparse
 import yaml
+import tqdm
 from pathlib import Path
 import multiprocessing
-import copy
 
 def Getlevels(WidthAndHeight, shapes):
     new_level = [Level(WidthAndHeight, WidthAndHeight, shapes, np.zeros((WidthAndHeight, WidthAndHeight)).tolist())]
@@ -84,15 +84,15 @@ if __name__ == "__main__":
     
     parser = argparse.ArgumentParser()
     parser.add_argument('-f', "--config", type=str, default="config.yaml")
-    parser.add_argument('-c', '--cpu-workers', type=int, default=multiprocessing.cpu_count())
+    # parser.add_argument('-c', '--cpu-workers', type=int, default=multiprocessing.cpu_count())
     parser.add_argument('-v', '--verbose', action='store_true')
     args = parser.parse_args()
     config = yaml.safe_load(Path(args.config).read_text())
     
-    print("Number of cpu can use:", args.cpu_workers)
+    # print("Number of cpu can use:", args.cpu_workers)
     print("Use config file:", Path(args.config))
     
-    with concurrent.futures.ThreadPoolExecutor(max_workers=args.cpu_workers) as executor:
+    with concurrent.futures.ProcessPoolExecutor() as executor:
         try:
             for case_config in config["case"]:
                 rewards = []
@@ -101,13 +101,17 @@ if __name__ == "__main__":
                 use_times = []
                 futures = [executor.submit(play_game, case_config, args.verbose) for i in range(config["number_of_game_each_case_plays"])]
                 try:
+                    pbar = tqdm.tqdm(total=config["number_of_game_each_case_plays"], ncols=80)
                     for future in concurrent.futures.as_completed(futures):
                         reward, step, legal_action, use_time = future.result()
                         rewards.append(reward)
                         steps.append(step)
                         legal_actions.append(legal_action)
                         use_times.append(use_time)
-                        
+                        pbar.update(1)
+                    pbar.close()
+                    
+                    print()
                     print("case:", case_config, end="\n\n")
                     print("rewards:", get_info(rewards), end="\n\n")
                     print("steps:", get_info(steps), end="\n\n")
