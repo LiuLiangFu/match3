@@ -1,0 +1,25 @@
+number_of_game_each_case_plays: 1
+case:
+-   board_width_and_hight: 6
+    board_number_of_different_color: 4
+    rollout_len: -1 # -1 = infinite >0 = finite
+    no_legal_actions_do: "terminal" #"shuffle" "new" "terminal"
+    immovable_move: True
+    number_of_immovable_add: 1
+    match_counts_add_immovable: True
+    number_of_match_counts_add_immovable: 10
+    step_add_immovable: False
+    number_of_step_add_immovable: 10
+    mode: "greedy_a" #"random" "greedy_a"
+
+-   board_width_and_hight: 6
+    board_number_of_different_color: 5
+    rollout_len: -1 # -1 = infinite >0 = finite
+    no_legal_actions_do: "terminal" #"shuffle" "new" "terminal"
+    immovable_move: True
+    number_of_immovable_add: 1
+    match_counts_add_immovable: True
+    number_of_match_counts_add_immovable: 10
+    step_add_immovable: False
+    number_of_step_add_immovable: 10
+    mode: "greedy_a" #"random" "greedy_a"
