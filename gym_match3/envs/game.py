@@ -218,7 +218,7 @@ class Board(AbstractBoard):
         else:
             moveable_mask = self.board != self.immovable_shape
         board_ravel = self.board[moveable_mask]
-        np.random.seed(random_state)
+        # np.random.seed(random_state)
         np.random.shuffle(board_ravel)
         self.put_mask(moveable_mask, board_ravel)
         
@@ -338,7 +338,7 @@ class RandomBoard(Board):
     def set_random_board(self, random_state=None):
         board_size = self.board_size
 
-        np.random.seed(random_state)
+        # np.random.seed(random_state)
         board = np.random.randint(
             low=0,
             high=self.n_shapes,
@@ -578,7 +578,7 @@ class Filler(AbstractFiller):
                 np.random.shuffle(new_shapes)
                 self.__num_of_immovable = 0
         else:
-            np.random.seed(self.__random_state)
+            # np.random.seed(self.__random_state)
             new_shapes = np.random.randint(
                 low=0, high=board.n_shapes, size=num_of_nans)
             

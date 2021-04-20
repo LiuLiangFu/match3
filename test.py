@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import concurrent.futures
 from random import choice
+import random
 import numpy as np
 import time
 from gym_match3.envs import Match3Env
@@ -15,7 +16,9 @@ def Getlevels(WidthAndHeight, shapes):
     new_level = [Level(WidthAndHeight, WidthAndHeight, shapes, np.zeros((WidthAndHeight, WidthAndHeight)).tolist())]
     return Match3Levels(new_level)
 
-def play_game(config, verbose=False):
+def play_game(config, verbose=False, random_state=None):
+    random.seed(random_state)
+    np.random.seed(random_state)
     levels = Getlevels(config["board_width_and_hight"], config["board_number_of_different_color"])
     env = Match3Env(immovable_move=config["immovable_move"],
                     n_of_match_counts_immov=config["number_of_immovable_add"],
@@ -25,7 +28,8 @@ def play_game(config, verbose=False):
                     number_of_step_add_immovable=config["number_of_step_add_immovable"],
                     no_legal_actions_do=config["no_legal_actions_do"],
                     rollout_len=config["rollout_len"],
-                    levels = levels)
+                    levels = levels,
+                    random_state = random_state)
     
     available_actions = {v : k for k, v in dict(enumerate(env.get_available_actions())).items()}
     observation = env.reset()
@@ -99,7 +103,7 @@ if __name__ == "__main__":
                 steps = []
                 legal_actions = []
                 use_times = []
-                futures = [executor.submit(play_game, case_config, args.verbose) for i in range(config["number_of_game_each_case_plays"])]
+                futures = [executor.submit(play_game, case_config, args.verbose, i) for i in range(config["number_of_game_each_case_plays"])]
                 try:
                     pbar = tqdm.tqdm(total=config["number_of_game_each_case_plays"], ncols=80)
                     for future in concurrent.futures.as_completed(futures):
