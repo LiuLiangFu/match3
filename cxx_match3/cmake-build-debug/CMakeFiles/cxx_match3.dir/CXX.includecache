@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/LiuLiangFu/Desktop/CGI_LAB_match3/cxx_match3/Board.h
+vector
+-
+string
+-
+
+C:/Users/LiuLiangFu/Desktop/CGI_LAB_match3/cxx_match3/Filler.h
+random
+-
+Board.h
+C:/Users/LiuLiangFu/Desktop/CGI_LAB_match3/cxx_match3/Board.h
+
+C:/Users/LiuLiangFu/Desktop/CGI_LAB_match3/cxx_match3/Game.h
+Board.h
+C:/Users/LiuLiangFu/Desktop/CGI_LAB_match3/cxx_match3/Board.h
+Filler.h
+C:/Users/LiuLiangFu/Desktop/CGI_LAB_match3/cxx_match3/Filler.h
+Searcher.h
+C:/Users/LiuLiangFu/Desktop/CGI_LAB_match3/cxx_match3/Searcher.h
+
+C:/Users/LiuLiangFu/Desktop/CGI_LAB_match3/cxx_match3/Searcher.h
+Board.h
+C:/Users/LiuLiangFu/Desktop/CGI_LAB_match3/cxx_match3/Board.h
+
+C:/Users/LiuLiangFu/Desktop/CGI_LAB_match3/cxx_match3/main.cpp
+iostream
+-
+Game.h
+C:/Users/LiuLiangFu/Desktop/CGI_LAB_match3/cxx_match3/Game.h
+cstdlib
+-
+ctime
+-
+
