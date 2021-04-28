@@ -21,6 +21,8 @@ public:
 
     bool put(const std::vector<unsigned short> &indexes, const std::vector<short> &shapes);
 
+    bool put(const std::vector<unsigned short> &indexes, int shape);
+
     void delete_match(const std::vector<unsigned short> &indexes);
 
     void clear();

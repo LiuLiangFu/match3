@@ -2,3 +2,5 @@
 *.ini
 *.bak
 *.pyc
+*.exe
+*.a

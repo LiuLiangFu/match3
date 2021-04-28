@@ -128,3 +128,12 @@ void Board::clear() {
         data_.push_back(space_shape_);
     }
 }
+
+bool Board::put(const std::vector<unsigned short> &indexes, int shape) {
+    if (shape == space_shape_ || shape == immovable_shape_)
+        return false;
+    for (unsigned short index : indexes) {
+        data_[index] = shape;
+    }
+    return true;
+}
