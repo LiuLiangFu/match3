@@ -19,13 +19,12 @@ public:
          std::string no_match_actions_do = "terminal", bool only_match_action_legal = true,
          bool apply_non_match_action = false);
 
-    Game(unsigned short x, unsigned short y, unsigned short n_shapes, bool immovable_move,
-         unsigned short n_of_match_counts_immovable, bool match_counts_add_immovable,
-         unsigned short number_of_match_counts_add_immovable, bool step_add_immovable,
-         unsigned short number_of_step_add_immovable, unsigned short length,
-         int rollout_len = -1, short immovable_shape = -1, short space_shape = -2, bool immovable_interactive = false,
-         std::string no_match_actions_do = "terminal", bool only_match_action_legal = true,
-         bool apply_non_match_action = false);
+    //Game(unsigned short x, unsigned short y, unsigned short n_shapes, bool immovable_move,
+    //     unsigned short n_of_match_counts_immovable, bool match_counts_add_immovable,
+    //     unsigned short number_of_match_counts_add_immovable, bool step_add_immovable,
+    //     unsigned short number_of_step_add_immovable, unsigned short length,
+    //     int rollout_len = -1, short immovable_shape = -1, short space_shape = -2, bool immovable_interactive = false,
+    //     std::string no_match_actions_do = "terminal", bool only_match_action_legal = true);
 
     void start();
 

@@ -26,25 +26,24 @@ Game::Game(unsigned short x, unsigned short y, unsigned short n_shapes, bool imm
         total_reward_(0) {
 }
 
-Game::Game(unsigned short x, unsigned short y, unsigned short n_shapes, bool immovable_move,
-           unsigned short n_of_match_counts_immovable, bool match_counts_add_immovable,
-           unsigned short number_of_match_counts_add_immovable, bool step_add_immovable,
-           unsigned short number_of_step_add_immovable, unsigned short length,
-           int rollout_len, short immovable_shape, short space_shape, bool immovable_interactive,
-           std::string no_match_actions_do, bool only_match_action_legal, bool apply_non_match_action) :
-        board_(Board(x, y, n_shapes, immovable_shape, space_shape, immovable_interactive)),
-        filler_(Filler(immovable_move, n_of_match_counts_immovable, match_counts_add_immovable,
-                       number_of_match_counts_add_immovable, step_add_immovable,
-                       number_of_step_add_immovable)),
-        searcher_(Searcher(length)),
-        step_(0),
-        rollout_len_(rollout_len),
-        no_match_actions_do_(std::move(no_match_actions_do)),
-        only_match_action_legal_(only_match_action_legal),
-        apply_non_match_action_(apply_non_match_action),
-        reward_(0),
-        total_reward_(0) {
-}
+//Game::Game(unsigned short x, unsigned short y, unsigned short n_shapes, bool immovable_move,
+//           unsigned short n_of_match_counts_immovable, bool match_counts_add_immovable,
+//          unsigned short number_of_match_counts_add_immovable, bool step_add_immovable,
+//           unsigned short number_of_step_add_immovable, unsigned short length,
+//           int rollout_len, short immovable_shape, short space_shape, bool immovable_interactive,
+//           std::string no_match_actions_do, bool only_match_action_legal) :
+//        board_(Board(x, y, n_shapes, immovable_shape, space_shape, immovable_interactive)),
+//        filler_(Filler(immovable_move, n_of_match_counts_immovable, match_counts_add_immovable,
+//                       number_of_match_counts_add_immovable, step_add_immovable,
+//                       number_of_step_add_immovable)),
+//        searcher_(Searcher(length)),
+//        step_(0),
+//        rollout_len_(rollout_len),
+//        no_match_actions_do_(std::move(no_match_actions_do)),
+//       only_match_action_legal_(only_match_action_legal),
+//        reward_(0),
+//        total_reward_(0) {
+//}
 
 void Game::start() {
     board_.clear();
