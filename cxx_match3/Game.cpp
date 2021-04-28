@@ -11,7 +11,7 @@ Game::Game(unsigned short x, unsigned short y, unsigned short n_shapes, bool imm
            unsigned short number_of_match_counts_add_immovable, bool step_add_immovable,
            unsigned short number_of_step_add_immovable, unsigned short length, unsigned int random_seed,
            int rollout_len, short immovable_shape, short space_shape, bool immovable_interactive,
-           std::string no_match_actions_do, bool only_match_action_legal) :
+           std::string no_match_actions_do, bool only_match_action_legal, bool apply_non_match_action) :
         board_(Board(x, y, n_shapes, immovable_shape, space_shape, immovable_interactive)),
         filler_(Filler(immovable_move, n_of_match_counts_immovable, match_counts_add_immovable,
                        number_of_match_counts_add_immovable, step_add_immovable,
@@ -21,6 +21,7 @@ Game::Game(unsigned short x, unsigned short y, unsigned short n_shapes, bool imm
         rollout_len_(rollout_len),
         no_match_actions_do_(std::move(no_match_actions_do)),
         only_match_action_legal_(only_match_action_legal),
+        apply_non_match_action_(apply_non_match_action),
         reward_(0),
         total_reward_(0) {
 }
@@ -30,7 +31,7 @@ Game::Game(unsigned short x, unsigned short y, unsigned short n_shapes, bool imm
            unsigned short number_of_match_counts_add_immovable, bool step_add_immovable,
            unsigned short number_of_step_add_immovable, unsigned short length,
            int rollout_len, short immovable_shape, short space_shape, bool immovable_interactive,
-           std::string no_match_actions_do, bool only_match_action_legal) :
+           std::string no_match_actions_do, bool only_match_action_legal, bool apply_non_match_action) :
         board_(Board(x, y, n_shapes, immovable_shape, space_shape, immovable_interactive)),
         filler_(Filler(immovable_move, n_of_match_counts_immovable, match_counts_add_immovable,
                        number_of_match_counts_add_immovable, step_add_immovable,
@@ -40,6 +41,7 @@ Game::Game(unsigned short x, unsigned short y, unsigned short n_shapes, bool imm
         rollout_len_(rollout_len),
         no_match_actions_do_(std::move(no_match_actions_do)),
         only_match_action_legal_(only_match_action_legal),
+        apply_non_match_action_(apply_non_match_action),
         reward_(0),
         total_reward_(0) {
 }
@@ -75,13 +77,16 @@ bool Game::apply_action(unsigned int action) {
         reward_ = 0;
 
         std::vector<unsigned short> matches = searcher_.scan_board_for_matches(board_);
-        while (!matches.empty()) {
-            reward_ += matches.size();
-            board_.delete_match(matches);
-            filler_.move_and_fill_spaces(board_, true, false);
-            matches = searcher_.scan_board_for_matches(board_);
+        if (matches.empty() && !apply_non_match_action_)
+            board_.apply_action(action);
+        else {
+            while (!matches.empty()) {
+                reward_ += matches.size();
+                board_.delete_match(matches);
+                filler_.move_and_fill_spaces(board_, true, false);
+                matches = searcher_.scan_board_for_matches(board_);
+            }
         }
-
         total_reward_ += reward_;
 
         if (no_match_actions_do_ != "terminal" && !searcher_.have_any_matches_action(board_)) {

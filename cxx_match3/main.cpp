@@ -29,10 +29,8 @@ int main() {
     const unsigned int number_of_game = 10000;
     std::string mode = "random";
 
-    std::vector<double> total_rewards;
+    std::vector<double> total_rewards, total_times;
     total_rewards.reserve(number_of_game);
-
-    std::vector<double> total_times;
     total_times.reserve(number_of_game);
 
     std::vector<unsigned int> total_steps;
@@ -48,7 +46,8 @@ int main() {
         a = clock();
         Game test(6, 6, 4, true, 1, false,
                   0, true, 5, 3,
-                  random_seed, -1, -1, -2, false, "terminal", true);
+                  random_seed, -1, -1, -2, false,
+                  "terminal", true, false);
         test.start();
         // std::cout << test.to_string();
         double rewards = 0;
