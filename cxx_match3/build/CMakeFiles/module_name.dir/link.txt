@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -flto -shared  -o module_name.cpython-37m-x86_64-linux-gnu.so CMakeFiles/module_name.dir/module.cpp.o CMakeFiles/game.dir/Game.cpp.o CMakeFiles/board.dir/Board.cpp.o CMakeFiles/filler.dir/Filler.cpp.o CMakeFiles/searcher.dir/Searcher.cpp.o 

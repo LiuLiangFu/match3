@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/hans/test/match3/cxx_match3/Board.h
+vector
+-
+string
+-
+
+/home/hans/test/match3/cxx_match3/Searcher.cpp
+Searcher.h
+/home/hans/test/match3/cxx_match3/Searcher.h
+
+/home/hans/test/match3/cxx_match3/Searcher.h
+Board.h
+/home/hans/test/match3/cxx_match3/Board.h
+

@@ -1,0 +1,10 @@
+/home/hans/test/match3/cxx_match3/build/CMakeFiles/rebuild_cache.dir
+/home/hans/test/match3/cxx_match3/build/CMakeFiles/cxx_match3.dir
+/home/hans/test/match3/cxx_match3/build/CMakeFiles/module_name.dir
+/home/hans/test/match3/cxx_match3/build/CMakeFiles/searcher.dir
+/home/hans/test/match3/cxx_match3/build/CMakeFiles/filler.dir
+/home/hans/test/match3/cxx_match3/build/CMakeFiles/board.dir
+/home/hans/test/match3/cxx_match3/build/CMakeFiles/edit_cache.dir
+/home/hans/test/match3/cxx_match3/build/CMakeFiles/game.dir
+/home/hans/test/match3/cxx_match3/build/pybind11/CMakeFiles/rebuild_cache.dir
+/home/hans/test/match3/cxx_match3/build/pybind11/CMakeFiles/edit_cache.dir
